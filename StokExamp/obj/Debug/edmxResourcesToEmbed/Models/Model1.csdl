@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="STOKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tbl_GirisCikis">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="urun_id" Type="Int32" Nullable="false" />
+    <Property Name="musteri_id" Type="Int32" Nullable="false" />
+    <Property Name="ıslemZamani" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="hareket" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="miktar" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Musteri" Relationship="Self.FK_tbl_GirisCikis_Musteri_id_tbl_Musteri_id" FromRole="tbl_GirisCikis" ToRole="tbl_Musteri" />
+    <NavigationProperty Name="tbl_Urun" Relationship="Self.FK_tbl_GirisCikisUrun_id_tbl_Urun_id" FromRole="tbl_GirisCikis" ToRole="tbl_Urun" />
+  </EntityType>
+  <EntityType Name="tbl_Musteri">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="telefon" Type="Decimal" Precision="11" Scale="0" />
+    <NavigationProperty Name="tbl_GirisCikis" Relationship="Self.FK_tbl_GirisCikis_Musteri_id_tbl_Musteri_id" FromRole="tbl_Musteri" ToRole="tbl_GirisCikis" />
+  </EntityType>
+  <EntityType Name="tbl_Urun">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_GirisCikis" Relationship="Self.FK_tbl_GirisCikisUrun_id_tbl_Urun_id" FromRole="tbl_Urun" ToRole="tbl_GirisCikis" />
+  </EntityType>
+  <Association Name="FK_tbl_GirisCikis_Musteri_id_tbl_Musteri_id">
+    <End Role="tbl_Musteri" Type="Self.tbl_Musteri" Multiplicity="1" />
+    <End Role="tbl_GirisCikis" Type="Self.tbl_GirisCikis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Musteri">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_GirisCikis">
+        <PropertyRef Name="musteri_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_GirisCikisUrun_id_tbl_Urun_id">
+    <End Role="tbl_Urun" Type="Self.tbl_Urun" Multiplicity="1" />
+    <End Role="tbl_GirisCikis" Type="Self.tbl_GirisCikis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Urun">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tbl_GirisCikis">
+        <PropertyRef Name="urun_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="STOKEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_GirisCikis" EntityType="Self.tbl_GirisCikis" />
+    <EntitySet Name="tbl_Musteri" EntityType="Self.tbl_Musteri" />
+    <EntitySet Name="tbl_Urun" EntityType="Self.tbl_Urun" />
+    <AssociationSet Name="FK_tbl_GirisCikis_Musteri_id_tbl_Musteri_id" Association="Self.FK_tbl_GirisCikis_Musteri_id_tbl_Musteri_id">
+      <End Role="tbl_Musteri" EntitySet="tbl_Musteri" />
+      <End Role="tbl_GirisCikis" EntitySet="tbl_GirisCikis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_GirisCikisUrun_id_tbl_Urun_id" Association="Self.FK_tbl_GirisCikisUrun_id_tbl_Urun_id">
+      <End Role="tbl_Urun" EntitySet="tbl_Urun" />
+      <End Role="tbl_GirisCikis" EntitySet="tbl_GirisCikis" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

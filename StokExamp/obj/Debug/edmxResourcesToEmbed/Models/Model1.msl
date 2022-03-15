@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="STOKModelStoreContainer" CdmEntityContainer="STOKEntities1">
+    <EntitySetMapping Name="tbl_GirisCikis">
+      <EntityTypeMapping TypeName="STOKModel.tbl_GirisCikis">
+        <MappingFragment StoreEntitySet="tbl_GirisCikis">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="urun_id" ColumnName="urun_id" />
+          <ScalarProperty Name="musteri_id" ColumnName="musteri_id" />
+          <ScalarProperty Name="ıslemZamani" ColumnName="ıslemZamani" />
+          <ScalarProperty Name="hareket" ColumnName="hareket" />
+          <ScalarProperty Name="miktar" ColumnName="miktar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Musteri">
+      <EntityTypeMapping TypeName="STOKModel.tbl_Musteri">
+        <MappingFragment StoreEntitySet="tbl_Musteri">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="adi" ColumnName="adi" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Urun">
+      <EntityTypeMapping TypeName="STOKModel.tbl_Urun">
+        <MappingFragment StoreEntitySet="tbl_Urun">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="adi" ColumnName="adi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
